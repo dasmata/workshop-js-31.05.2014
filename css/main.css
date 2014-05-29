@@ -1,0 +1,285 @@
+body{
+	margin:0;
+	padding:0;
+	font-family: arial, sans-serif;
+}
+input{
+	outline-width: 0;
+}
+.disabled{
+	opacity:0.5;
+}
+#cp-holder{
+	float:left;
+	margin-top:100px;
+	background: url(../images/tile-bg.jpg);
+	padding:15px;
+	margin-left:15px;
+	border-radius: 15px;
+}
+#cp-holder::before{
+	display:block;
+	content: "House Automation Control Panel";
+	color:#fff;
+	margin-bottom:10px;
+}
+
+legend{
+	color:#fff;
+	text-align:center;
+}
+
+.section-segment{
+	float:left;
+}
+
+#cp-holder form{
+	display:block;
+}
+#cp-holder form fieldset{
+	float:left;
+}
+.button-holder{
+	margin:5px;
+}
+
+/**
+	VERTICAL SLIDER
+*/
+.vertical-slider-holder{
+	height:254px;
+	width:64px;
+	position:relative;
+	border:0px;
+	float:left;
+}
+.vertical-slider-holder label{
+	clear:both;
+	display:block;
+	-webkit-transform: rotate(-90deg);
+	color:#fff;
+	font-size:15px;
+	height:23px;
+	width:254px;
+	position:absolute;
+	top:85px;
+	left:-114px;
+}
+.cp-vertical-slider-display{
+	text-align: center;
+	border:0;
+	display:block;
+	width:80px;
+	position:absolute;
+	bottom:0px;
+    	background:transparent;
+	color:#fff;
+}
+
+.cp-vertical-slider{
+	width:233px;
+	height:34px;
+	-webkit-appearance: none;
+	border-radius: 5px;
+	background-color: #999;
+	vertical-align: middle;
+	-webkit-transform:rotate(-90deg);
+	position:absolute;
+	top:98px;
+	left:-78px;
+}
+
+.cp-vertical-slider::-webkit-slider-runnable-track{
+	border: none;
+	width:233px;
+	height:34px;
+	background:url("../images/slider-1-back.png") no-repeat;
+}
+
+.cp-vertical-slider::-webkit-slider-thumb {
+	-webkit-appearance: none !important;
+	background: url("../images/slider-1-knoob.png");
+	height: 33px;
+	width: 31px;
+	cursor: pointer;
+	margin-top: 2px;
+	position:relative;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+.cp-switch{
+	width:22px;
+}
+/**
+	ON/OFF switch
+*/
+.switch-range {
+	position: relative;
+	height:40px;
+}
+.switch-range label{
+	display:block;
+	color:#fff;
+	font-size:15px;
+	height:25px;
+	float:left;
+	width:100px;
+}
+.switch-range:before, .switch-range:after{
+	width: 20px;
+	z-index: 100;
+	height:20px;
+	position: absolute;
+	font-family: sans-serif;
+	font-size:15px;
+	text-align: center;
+	line-height: 20px;
+	top:0px;
+	content:"";
+}
+.switch-range:before{
+	background: url("../images/switcher-1-back-on.png");
+}
+.switch-range:after{
+	background: url("../images/switcher-1-back-off.png");
+	left:120px;
+}
+
+.switch-range input[type=range] {
+	-webkit-appearance: none;
+	border-radius: 0;
+	background: transparent;
+	width: 40px;
+	height:20px;
+	padding:0;
+	margin:0;
+	position:relative;
+	z-index:300;
+}
+.switch-range input[type=range]::-moz-range-track {
+	border:none;
+	background: transparent;
+}
+.switch-range input[type=range]::-ms-track {
+	border:none;
+	background: transparent;
+	color:transparent;
+}
+.switch-range input[type=range]::-ms-fill-lower {
+	background: transparent;
+	border:0;
+	height:20px;
+}
+.switch-range input[type=range]::-ms-tooltip {
+	color:red;
+	display: none;
+}
+
+.switch-range input[type="range"]::-webkit-slider-thumb
+{
+	-webkit-appearance: none;
+	background: url(../images/switcher-1-knoob.png) no-repeat;
+	width: 20px;
+	height: 20px;
+	border:0;
+	position:relative;
+	right:-1px;
+	top:1px;
+	z-index:2000;
+}
+.switch-range input[type="range"]::-moz-range-thumb {
+	background: url(../images/switcher-1-knoob.png) no-repeat;
+	border-radius: 0;
+	width: 50%;
+	height: 22px;
+	border:none;
+}
+.switch-range input[type="range"]::-ms-thumb {
+	background:#ADA59A;
+	border-radius: 0;
+	width: 40px;
+	height: 22px;
+	border:none;
+	color:transparent;
+}
+/**
+	HOUSE
+*/
+#house{
+	height:400px;
+	width:400px;
+	border:1px solid #000;
+	border-top:0;
+	margin:100px 100px 50px 0;
+	float:right;
+	position:relative;
+}
+#house::before{
+	display:block;
+	width:270px;
+	height:100px;
+	border-bottom:1px solid #000;
+	background:#fff;
+	content:".";
+	color:transparent;
+	margin-left:-73px;
+	margin-top:-36px;
+	-webkit-transform:rotate(-30deg);
+}
+#house::after{
+	display:block;
+	width:270px;
+	height:100px;
+	border-bottom:1px solid #000;
+	background:#fff;
+	content:".";
+	color:transparent;
+	margin-right:-69px;
+	margin-top:-95px;
+	float:right;
+	-webkit-transform:rotate(30deg);
+}
+#house .living, #house .kitchen{
+	width:130px;
+	height:100px;
+	border:1px solid #000;
+	position:absolute;
+	top:147px;
+}
+#house .living{
+	left:30px;
+}
+#house .living::after,#house .kitchen::after{
+	content:".";
+	display:block;
+	float:right;
+	color:transparent;
+	border-left:1px solid #000;
+	margin-right:61px;
+	height:100px;
+}
+#house .kitchen{
+	right:30px;
+}
+#house .door{
+	width:70px;
+	height:100px;
+	position:absolute;
+	bottom:-1px;
+	left:161px;
+	border:1px solid #000;
+}
+.light-on{
+	background: #FF7;
+}
+.light-on.wall-light-on{
+	background: #FF0;
+}
+.wall-light-on{
+	background: #FF9;
+}
