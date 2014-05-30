@@ -29,13 +29,6 @@ z.ControlPanel = z.Renderable.extend({
 			section.addButton(btn);
 		}
 	},
-	"onButtonChange": function(btn){
-		var event = document.createEvent("Event");
-		event.initEvent("change");
-		event.namespace = "cp";
-		event.cp = this;
-		document.dispatchEvent(event);
-	},
 	"val": function(){
 		var values = {}, sectionName;
 		for(var i in this.sections){

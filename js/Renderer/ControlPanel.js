@@ -17,8 +17,5 @@ z.Renderer.ControlPanel = z.Renderer.extend({
 	},
 	"setActions": function(){
 		var self = this;
-		this.htmlHolder.on("buttonChange", function(e){
-			self.element.onButtonChange(e.button);
-		});
 	}
 });

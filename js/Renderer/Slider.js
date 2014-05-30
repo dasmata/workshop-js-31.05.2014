@@ -48,10 +48,10 @@ z.Renderer.Slider = z.Renderer.Button.extend({
 		});
 		this.input.change(function(e){
 			self.element.value = this.value;
-			self.input.trigger({
-				"type": "buttonChange",
-				"button": self.element
-			});
+			var event = document.createEvent("Event");
+			event.initEvent("buttonChange", true, true);
+			event.button = self.element;
+			self.input[0].dispatchEvent(event);
 		});
 	},
 	"createHolder": function(){
