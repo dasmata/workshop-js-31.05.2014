@@ -1,11 +1,9 @@
 "use strict";
 z.Controller = Class.extend({
 	"init" : function(){
-		this.controlPanelHolder = $('#'+z.config.cpHolder);
 		this.setActions();
 	},
 	"controlPanel" : null,
-	"controlPanelHolder" : null,
 	"house" : null,
 	"initControlPanel" : function(){
 		this.controlPanel = new z.ControlPanel(this.controlPanelHolder);

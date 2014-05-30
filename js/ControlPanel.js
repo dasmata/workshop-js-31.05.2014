@@ -1,11 +1,9 @@
 "use strict";
 z.ControlPanel = z.Renderable.extend({
-	"element": null,
 	"sections": null,
 	
-	"init": function(el){
+	"init": function(){
 		this.sections = [];
-		this.element = el;
 		this.initSections();
 	},
 	"initSections": function(){

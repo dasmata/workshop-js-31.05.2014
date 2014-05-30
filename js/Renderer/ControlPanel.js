@@ -9,7 +9,7 @@ z.Renderer.ControlPanel = z.Renderer.extend({
 			sectionEl = this.element.sections[i].addRenderer(sectionRenderer).render();
 			this.htmlHolder.append(sectionEl);
 		}
-		$("#cp-holder").append(this.htmlHolder);
+		$('#'+z.config.cpHolder).append(this.htmlHolder);
 	},
 	"createHolder": function(){
 		this.htmlHolder = $(document.createElement("form"))
