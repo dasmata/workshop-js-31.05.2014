@@ -1,14 +1,21 @@
 "use strict";
-z.Renderer.Section = z.Renderer.extend({
+z.View.SectionView = z.View.extend({
 	"htmlHolder": null,
-
+    "buttonViews" : null,
+    "init" : function(){
+        this.setActions();
+        this.buttonViews = {};
+    },
 	"render": function(prevElement){
-		var renderedElements = [];
-		var switches = [];
+        var view, type, switches = [], renderedElements = [], btnHtml;
+
 		this.createHolder(prevElement);
-		for(var i in this.element.buttons){
-			var btnHtml = this.element.buttons[i].render();
-			if(this.isSwitch(this.element.buttons[i])){
+		for(var i in this.entity.buttons){
+            type = this.entity.buttons[i].type;
+            view = new z.View[type.charAt(0).toUpperCase() + type.slice(1) + "View"]();
+            this.buttonViews[this.entity.buttons[i].name] = view;
+            btnHtml = view.setEntity(this.entity.buttons[i]).render();
+			if(this.isSwitch(this.entity.buttons[i])){
 				switches.push(btnHtml);
 				continue;
 			}
@@ -16,11 +23,23 @@ z.Renderer.Section = z.Renderer.extend({
 		}
 		
 		var switchesHolder = this.renderSwitches(switches);
-
 		this.htmlHolder.append(renderedElements);
 		this.htmlHolder.append(switchesHolder);
 		return this.htmlHolder;
 	},
+
+    "setActions" : function(){
+        var self = this;
+        document.addEventListener("buttonChange", function(e){
+            self.entity.buttons.forEach(function(button, value){
+                if(button.enabledBy == e.button.name){
+                    self.buttonViews[button.name].setEntity(button).render();
+                    return false;
+                }
+            });
+        });
+    },
+
 	"createSegment" : function(){
 		return $(document.createElement("div"))
 			.addClass("section-segment");
@@ -46,20 +65,13 @@ z.Renderer.Section = z.Renderer.extend({
 		return segments;
 	},
 	"isSwitch": function(button){
-		var found = false;
-		button.renderers.forEach(function(renderer, key){
-			if(renderer instanceof z.Renderer.Switch){
-				found = true;
-				return false;
-			}
-		});
-		return found;
+		return button.type === "switch";
 	},
 	"createHolder": function(prevElement){
 		this.htmlHolder = prevElement ? prevElement : $(document.createElement("fieldset"))
 			.append(
 				$(document.createElement("legend"))
-					.text(this.element.name)
+					.text(this.entity.name)
 			);
 	}
 });

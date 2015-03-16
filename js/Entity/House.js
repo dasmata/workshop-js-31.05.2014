@@ -1,5 +1,5 @@
 "use strict";
-z.House = z.Renderable.extend({
+z.House = z.Entity.extend({
 	"values": null,
 	"init": function(){
 		var self = this;

@@ -1,5 +1,5 @@
 "use strict";
-z.Section = z.Renderable.extend({
+z.Section = z.Entity.extend({
 	"buttons": null,
 	"name": null,
 
@@ -14,7 +14,7 @@ z.Section = z.Renderable.extend({
 			var found = false;
 			self.buttons.forEach(function(button, value){
 				if(button.enabledBy == e.button.name){
-					button.enable(parseInt(e.button.value, 10));
+					button.toggleEnabled(parseInt(e.button.value, 10));
 					return false; //break;
 				}
 			});

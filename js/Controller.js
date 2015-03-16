@@ -5,22 +5,28 @@ z.Controller = Class.extend({
 	},
 	"controlPanel" : null,
 	"house" : null,
+    "houseView" : null,
 	"initControlPanel" : function(){
-		this.controlPanel = new z.ControlPanel(this.controlPanelHolder);
-		this.controlPanel.addRenderer(new z.Renderer.ControlPanel()).render();
+        var view = new z.View.ControlPanelView();
+		this.controlPanel = new z.ControlPanel();
+        view.setEntity(this.controlPanel).render();
 	},
 	"initHouse": function(){
 		this.house = new z.House();
-		this.house.addRenderer(new z.Renderer.HTMLHouse("house")).render();
-		this.setInitValues();
+        this.setInitValues();
+
+        this.houseView = new z.View.HouseView("house");
+        this.houseView.setEntity(this.house);
+        this.houseView.render();
 	},
 	"setInitValues": function(){
-		this.house.setValues(this.controlPanel.val()).render();
+		this.house.setValues(this.controlPanel.val());
 	},
 	"setActions": function(){
 		var self = this;
 		document.addEventListener("buttonChange", function(e){
-			self.house.setValues(self.controlPanel.val()).render();
+			self.house.setValues(self.controlPanel.val());
+            self.houseView.render();
 		});
 	}
 });

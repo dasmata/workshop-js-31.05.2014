@@ -1,30 +1,30 @@
 "use strict";
-z.Renderer.Slider = z.Renderer.Button.extend({
+z.View.SliderView = z.View.ButtonView.extend({
 	"holder": null,
 	"input": null,
 	"display": null,
 	"errors": null,
-	"render": function(prevElement){
-		this.holder = this.createHolder();
-		this.holder.append(
-			this.createLabel()
-		).append(
-			this.input = this.createInput()
-		).append(
-			this.display = this.createDisplay()
-		).addClass("vertical-slider-holder");
-		this.setActions();
-		this.input.trigger("input");
-		if(this.element.disabled){
-			this.disableInput();
-		}
+	"render": function(){
+        if(this.holder == null) {
+            this.holder = this.createHolder();
+            this.holder.append(
+                this.createLabel()
+            ).append(
+                this.input = this.createInput()
+            ).append(
+                this.display = this.createDisplay()
+            ).addClass("vertical-slider-holder");
+            this.setActions();
+            this.input.trigger("input");
+        }
 
+        this._super();
 		return this.holder;
 	},
 	"validate": function(){
 		this.errors = [];
 		if(parseInt(this.display.val(),10) != this.display.val()){
-			this.errors.push(new z.Error("Invalid "+this.element.name+" value", this.display));
+			this.errors.push(new z.Error("Invalid " + this.entity.name + " value", this.display));
 			return false;
 		}
 		return true;
@@ -33,24 +33,24 @@ z.Renderer.Slider = z.Renderer.Button.extend({
 		var self = this;
 		this.input.on("input", function(){
 			self.display.val(self.input.val());
-			self.element.value = self.input.val();
+			self.entity.value = self.input.val();
 			self.input.trigger("change");
 		});
 		this.display.on("keyup", function(e){
 			var val = this.value;
 			if(!self.validate()){
-				self.display.val(self.element.value);
-				self.input.val(self.element.value);
+				self.display.val(self.entity.value);
+				self.input.val(self.entity.value);
 				self.displayErrors();
 				return false;
 			}
 			self.input.val(this.value).trigger("change");
 		});
 		this.input.change(function(e){
-			self.element.value = this.value;
+			self.entity.value = this.value;
 			var event = document.createEvent("Event");
 			event.initEvent("buttonChange", true, true);
-			event.button = self.element;
+			event.button = self.entity;
 			self.input[0].dispatchEvent(event);
 		});
 	},
@@ -61,20 +61,20 @@ z.Renderer.Slider = z.Renderer.Button.extend({
 	"createLabel": function(){
 		return $(document.createElement("label"))
 			.addClass("slider-label")
-			.text(this.element.name);
+			.text(this.entity.name);
 	},
 	"createInput": function(){
 		var el = $(document.createElement("input"))
 			.addClass("cp-vertical-slider")
 			.attr({
 				"type": "range",
-				"name": this.element.name,
-				"min": this.element.min,
-				"max": this.element.max,
-				"step": this.element.step ? this.element.step : 1,
+				"name": this.entity.name,
+				"min": this.entity.min,
+				"max": this.entity.max,
+				"step": this.entity.step ? this.entity.step : 1,
 				"orient": "vertical"
 			})
-			.val(this.element.min);
+			.val(this.entity.min);
 		return el;
 	},
 	"createDisplay": function(){
@@ -82,14 +82,14 @@ z.Renderer.Slider = z.Renderer.Button.extend({
 			.addClass("cp-vertical-slider-display")
 			.attr({
 				"type": "number",
-				"min": this.element.min,
-				"max": this.element.max
+				"min": this.entity.min,
+				"max": this.entity.max
 			});
 	},
 	"displayErrors": function(){
-		var renderer = new z.Renderer.ErrorRenderer();
+		var view = new z.View.ErrorView();
 		for(var i in this.errors){
-			this.errors[i].addRenderer(renderer).render();
+            view.setEntity(this.errors[i]).render();
 		}
 	}
 });

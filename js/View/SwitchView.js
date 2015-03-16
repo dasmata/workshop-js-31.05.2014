@@ -1,33 +1,37 @@
 "use strict";
-z.Renderer.Switch = z.Renderer.Button.extend({
+z.View.SwitchView = z.View.ButtonView.extend({
 	"holder": null,
 	"input": null,
 	"display": null,
 	"render": function(prevElement){
-		this.holder = this.createHolder();
-		this.holder.append(
-			this.createLabel()
-		).append(
-			this.input = this.createInput()
-		);
-		this.setActions();
-		this.input.click();
+        if(this.holder === null){
+            this.holder = this.createHolder();
+            this.holder.append(
+                this.createLabel()
+            ).append(
+                this.input = this.createInput()
+            );
+            this.setActions();
+            this.input.click();
+        }
+
+        this._super();
 		return this.holder;
 	},
 	"createLabel": function(){
 		return $(document.createElement("label"))
-			.text(this.element.name);
+			.text(this.entity.name);
 	},
 	"setActions": function(){
 		var self = this;
 		this.input.on("click", function(e){
-			if(self.element.value == self.input.val()){
+			if(self.entity.value == self.input.val()){
 				self.input.val(self.input.val() == "1" ? 0 : 1);
 			}
-			self.element.value = this.value;
+			self.entity.value = this.value;
 			var event = document.createEvent("Event");
 			event.initEvent("buttonChange", true, true);
-			event.button = self.element;
+			event.button = self.entity;
 			self.input[0].dispatchEvent(event);
 		});
 	},
@@ -40,7 +44,7 @@ z.Renderer.Switch = z.Renderer.Button.extend({
 			.addClass("cp-switch")
 			.attr({
 				"type": "range",
-				"name": this.element.name,
+				"name": this.entity.name,
 				"min": 0,
 				"max": 1,
 			})

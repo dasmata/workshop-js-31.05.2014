@@ -2,45 +2,52 @@ z.config = {
 	"buttons": {
 		"living": [
 			{
-				"renderer": "Switch",
-				"name": "Ceiling light"
+				"view": "SwitchView",
+				"name": "Ceiling light",
+                "type" : "switch"
 			},
 			{
-				"renderer": "Slider",
+				"view": "SliderView",
 				"name": "AC",
 				"min": 16,
-				"max": 30
+				"max": 30,
+                "type" : "slider"
 			},
 			{
-				"renderer": "Slider",
+				"view": "SliderView",
 				"name": "Dimmer light",
 				"min": 0,
-				"max": 100
+				"max": 100,
+                "type" : "slider"
 			}
 
 		],
 		"kitchen": [
 			{
-				"name": "Enable Stuff",
-				"renderer": "Switch"
+				"name": "Enable Oven",
+				"view": "SwitchView",
+                "type" : "switch"
 			},
 
 			{
-				"renderer": "Switch",
-				"name": "Ceiling light"
+				"view": "SwitchView",
+				"name": "Ceiling light",
+                "type" : "switch"
 			},
 			{
-				"renderer": "Slider",
-				"name": "Stuff",
+				"view": "SliderView",
+				"name": "Oven",
 				"min": 0,
 				"max": 250,
 				"step": 50,
 				"disabled": true,
-				"enabledBy": "Enable Stuff"
+				"enabledBy": "Enable Oven",
+                "type" : "slider"
 			},
 			{
-				"renderer": "Switch",
-				"name": "Wall light"
+				"view": "SwitchView",
+				"name": "Wall light",
+                "type" : "switch"
 			}
 
 		]

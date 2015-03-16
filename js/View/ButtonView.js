@@ -1,5 +1,5 @@
 "use strict";
-z.Renderer.Button = z.Renderer.extend({
+z.View.ButtonView = z.View.extend({
 	"input" : null,
 	"setElement": function(el){
 		if(!(el instanceof z.Button)){
@@ -15,5 +15,12 @@ z.Renderer.Button = z.Renderer.extend({
 	},
 	"enableInput": function(){
 		this.input.attr("disabled", false).removeClass("disabled");
-	}
+	},
+    "render" : function(){
+        if(this.entity.disabled){
+            this.disableInput();
+        } else {
+            this.enableInput();
+        }
+    }
 });

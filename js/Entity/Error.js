@@ -1,5 +1,5 @@
 "use strict";
-z.Error = z.Renderable.extend({
+z.Error = z.Entity.extend({
 	"message": null,
 	"element": null,
 	"init": function(msg,el){

@@ -1,4 +1,5 @@
-z.Button = z.Renderable.extend({
+"use strict";
+z.Button = z.Entity.extend({
 	"min": null,
 	"max": null,
 	"step": null,
@@ -6,6 +7,7 @@ z.Button = z.Renderable.extend({
 	"value": null,
 	"disabled": false,
 	"enabledBy": null,
+    "type" : null,
 	"init": function(config){
 		for(var i in config){
 			if(typeof this[i] !== "undefined"){
@@ -16,9 +18,7 @@ z.Button = z.Renderable.extend({
 	"val": function(){
 		return this.value;
 	},
-	"enable": function(enabled){
-		this.renderers.forEach(function(renderer, key){
-			renderer[enabled ? 'enableInput' : 'disableInput']();
-		});
+	"toggleEnabled": function(enabled){
+        this.disabled = !enabled;
 	}
 });
