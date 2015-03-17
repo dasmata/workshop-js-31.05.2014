@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project name="tutorialProject" default="prod" basedir="/Users/addy/buildTut/">
- 
+
     <description>Client-side ANT build file example</description>
- 
+
     <target name="-load.properties"
-        description="Set properties for this build">
+            description="Set properties for this build">
         <!--YUI Compressor location-->
         <property name="yui.dir" value="${basedir}/yuicompressor/build/yuicompressor-2.4.2.jar"/>
         <!--Source JS dir-->
@@ -21,63 +21,62 @@
         <property name="build.major" value="1"/>
         <property name="build.minor" value="1"/>
     </target>
- 
- 
- 
+
+
     <!--Create build directories-->
     <target name="-init" depends="-load.properties"
-        description="Create build directory structure">
+            description="Create build directory structure">
         <!--Create the time stamp for the new build-->
         <tstamp>
             <format property="TODAY" pattern="EEE, d MMM yyyy HH:mm:ss Z"/>
         </tstamp>
-        
+
         <!--Delete previous build files-->
         <delete dir="${build.dir}"/>
-        
+
         <!--Recreate the build directories-->
         <mkdir dir="${build.dir}"/>
         <mkdir dir="${build.dir}/js"/>
         <mkdir dir="${build.dir}/css"/>
-        
+
         <!--Log the build timestamps to file-->
         <echo file="${build.dir}/js/tstamp.txt" append="false">Build Date: ${TODAY}</echo>
     </target>
- 
- 
-   <!--JS Lint-->
-	<target depends="-init" name="-js.lint">
-	    <pathconvert pathsep=" " property="jsfiles">
-	        <fileset dir="${build.dir}/js/">
-	            <include name="*.js"/>
-	        </fileset>
-	    </pathconvert>
-	    <exec dir="${build.dir}/js/" executable="java" failonerror="true">
-	        <arg line="-jar ${js.jar} ${jslint.js} ${jsfiles}"/>
-	    </exec>
-	    <echo>Finished</echo>
-	</target>
-	
-	
+
+
+    <!--JS Lint-->
+    <target depends="-init" name="-js.lint">
+        <pathconvert pathsep=" " property="jsfiles">
+            <fileset dir="${build.dir}/js/">
+                <include name="*.js"/>
+            </fileset>
+        </pathconvert>
+        <exec dir="${build.dir}/js/" executable="java" failonerror="true">
+            <arg line="-jar ${js.jar} ${jslint.js} ${jsfiles}"/>
+        </exec>
+        <echo>Finished</echo>
+    </target>
+
+
     <!--Concatenate JS files-->
-    <target name="-js.concatenate" depends="-js.lint" 
-        description="Concatenates specified JavaScript files">
+    <target name="-js.concatenate" depends="-js.lint"
+            description="Concatenates specified JavaScript files">
         <concat destfile="${build.dir}/js/concat.js">
-            <fileset 
-                dir="${src.js.dir}"
-                includes="*.js" 
-                excludes="first.js, second.js"/>
+            <fileset
+                    dir="${src.js.dir}"
+                    includes="*.js"
+                    excludes="first.js, second.js"/>
         </concat>
         <echo>Finished</echo>
     </target>
- 
+
     <!--Minify JS files-->
-    <target name="-js.minify" depends="-js.concatenate" 
-        description="Minifies JavaScript files">
+    <target name="-js.minify" depends="-js.concatenate"
+            description="Minifies JavaScript files">
         <apply executable="java" parallel="false" dest="${build.dir}/js">
-            <fileset 
-                dir="${build.dir}/js" 
-                includes="concat.js"/>
+            <fileset
+                    dir="${build.dir}/js"
+                    includes="concat.js"/>
             <arg line="-jar"/>
             <arg path="${yui.dir}"/>
             <srcfile/>
@@ -87,11 +86,11 @@
         </apply>
         <echo>Finished</echo>
     </target>
- 
+
     <!--Build-->
-    <target name="prod" 
-        description="Builds project files for production use"
-        depends="
+    <target name="prod"
+            description="Builds project files for production use"
+            depends="
             -load.properties, 
             -init, 
             -js.concatenate,

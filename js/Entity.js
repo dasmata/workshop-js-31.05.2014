@@ -1,3 +1,2 @@
 "use strict";
-z.Entity = Class.extend({
-});
+z.Entity = Class.extend({});

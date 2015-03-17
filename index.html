@@ -1,43 +1,43 @@
 <!-- DOCTYPE html -->
 <html>
 <head>
-	<script type="text/javascript">
-		var z = {};
-	</script>
-	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-	<script type="text/javascript" src="js/config.js"></script>
-	<script type="text/javascript" src="js/Class.js"></script>
-	<script type="text/javascript" src="js/View.js"></script>
-	<script type="text/javascript" src="js/View/ControlPanelView.js"></script>
-	<script type="text/javascript" src="js/View/ButtonView.js"></script>
-	<script type="text/javascript" src="js/View/SliderView.js"></script>
-	<script type="text/javascript" src="js/View/SwitchView.js"></script>
-	<script type="text/javascript" src="js/View/SectionView.js"></script>
-	<script type="text/javascript" src="js/View/ErrorView.js"></script>
-	<script type="text/javascript" src="js/View/HouseView.js"></script>
-	<script type="text/javascript" src="js/Entity.js"></script>
-	<script type="text/javascript" src="js/Entity/Error.js"></script>
-	<script type="text/javascript" src="js/Entity/Button.js"></script>
-	<script type="text/javascript" src="js/Entity/Section.js"></script>
-	<script type="text/javascript" src="js/Entity/ControlPanel.js"></script>
+    <script type="text/javascript">
+        var z = {};
+    </script>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="js/config.js"></script>
+    <script type="text/javascript" src="js/Class.js"></script>
+    <script type="text/javascript" src="js/View.js"></script>
+    <script type="text/javascript" src="js/View/ControlPanelView.js"></script>
+    <script type="text/javascript" src="js/View/ButtonView.js"></script>
+    <script type="text/javascript" src="js/View/SliderView.js"></script>
+    <script type="text/javascript" src="js/View/SwitchView.js"></script>
+    <script type="text/javascript" src="js/View/SectionView.js"></script>
+    <script type="text/javascript" src="js/View/ErrorView.js"></script>
+    <script type="text/javascript" src="js/View/HouseView.js"></script>
+    <script type="text/javascript" src="js/Entity.js"></script>
+    <script type="text/javascript" src="js/Entity/Error.js"></script>
+    <script type="text/javascript" src="js/Entity/Button.js"></script>
+    <script type="text/javascript" src="js/Entity/Section.js"></script>
+    <script type="text/javascript" src="js/Entity/ControlPanel.js"></script>
     <script type="text/javascript" src="js/Entity/House.js"></script>
-	<script type="text/javascript" src="js/Controller.js"></script>
-	<link href="css/main.css" type="text/css" rel="stylesheet" media="screen" />
+    <script type="text/javascript" src="js/Controller.js"></script>
+    <link href="css/main.css" type="text/css" rel="stylesheet" media="screen"/>
 </head>
 <body>
 <div id="cp-holder">
 </div>
 <script type="text/javascript">
-	z.page = new z.Controller();
-	z.page.initControlPanel();
+    z.page = new z.Controller();
+    z.page.initControlPanel();
 </script>
 <div id="house">
-	<div class="living"></div>
-	<div class="kitchen"></div>
-	<div class="door"></div>
+    <div class="living"></div>
+    <div class="kitchen"></div>
+    <div class="door"></div>
 </div>
 <script type="text/javascript">
-	z.page.initHouse();
+    z.page.initHouse();
 </script>
 </body>
 </html>
